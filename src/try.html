@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../public/output.css">
+
+  <style>
+    #text-stroke{
+      font-size: 80px;
+      font-weight: 400;
+      -webkit-background-clip: text;
+      -webkit-text-stroke: 1.6px #E93470;
+      -webkit-text-fill-color: rgb(255, 255, 255);
+    }
+  </style>
+</head>
+<body>
+ 
+
+  <h1 class="title">Scroll To Activate</h1>
+<div class="h-[100vh]"></div>
+
+<div class="counters flex items-center justify-center h-96">
+  <div class="flex items-center gap-20">
+    <!-- counter 1 -->
+    <div class="counter">
+      <h1 class="bg-gradient-to-r from-[#3C33EF] to-[#F43366] text-transparent" id="text-stroke"><span data-count="12">0</span>K+</h1>
+      <p class="text-[10px] text-center">Project Complete</p>
+    </div>
+
+    <!-- counter 2 -->
+    <div class="counter">
+      <h1 class="text-transparent" id="text-stroke"><span data-count="7">0</span>K+</h1>
+      <p class="text-[10px] text-center">Happy Clients</p>
+    </div>
+
+    <div class="counter">
+      <h1 class="text-transparent" id="text-stroke"><span data-count="10">0</span>K+</h1>
+      <p class="text-[10px] text-center">Years Experience</p>
+    </div>
+
+    <div class="counter">
+      <h1 class="text-transparent" id="text-stroke"><span data-count="27">0</span>0+</h1>
+      <p class="text-[10px] text-center">Win Awards</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Get all elements from the DOM
+  const counters = document.querySelectorAll(".counters span");
+  const container = document.querySelector(".counters");
+
+  let activated = false;
+
+  window.addEventListener("scroll", () => {
+    // Check if the user has scrolled into the container section
+    if (window.pageYOffset > container.offsetTop - window.innerHeight + 200 && !activated) {
+      counters.forEach(counter => {
+        let count = 0;
+        const target = parseInt(counter.dataset.count);
+
+        function updateCount() {
+          if (count < target) {
+            count++;
+            counter.innerText = count;
+            setTimeout(updateCount, 120);
+          } else {
+            counter.innerText = target;
+          }
+        }
+        updateCount();
+      });
+      activated = true;
+    } else if (window.pageYOffset < container.offsetTop - window.innerHeight + 500 && activated) {
+      counters.forEach(counter => {
+        counter.innerText = 0;
+      });
+      activated = false;
+    }
+  });
+</script>
+
+</body>
+</html>
+
+
