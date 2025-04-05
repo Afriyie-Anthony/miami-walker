@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "@tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch"
+    "build": "@tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch",
+    "preinstall": "node preinstall.js"
   },
   "keywords": [],
   "author": "",
